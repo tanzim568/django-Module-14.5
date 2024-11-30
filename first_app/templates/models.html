@@ -1,0 +1,59 @@
+{%extends 'base.html'%}
+{% load crispy_forms_tags%}
+{%block content%}
+
+
+<form method="post" class="container">
+     {% csrf_token %}
+   
+    <!-- {{form}}  data received -->
+     
+      
+
+
+      <!-- table started -->
+           
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Roll</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          {% for data in form %}
+          {{data}}
+          <tr>
+             <th scope="row">{{data.id}}</th>
+            <td>{{data.roll}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.address}}</td>
+            <td><a href="{% url 'deletedata' data.roll %}" class="btn btn-warning btn-sm">Delete</a></td>
+             
+          </tr>
+             {%endfor%}
+            
+        
+        </tbody>
+      </table>
+
+
+
+
+
+
+
+
+
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+{%endblock%}
